@@ -4,8 +4,6 @@ import { Box } from '@mui/material';
 
 import ProjectData from '@/pages/Projects/ProjectData';
 
-import Title from '@/components/Title';
-
 import { useTheme } from '@mui/material/styles';
 
 import TabContext from '@mui/lab/TabContext';
@@ -78,12 +76,6 @@ export default function Projects({ home }: ProjectProps) {
             backgroundColor: theme.palette.secondary.main,
           }}
         >
-          <Title
-            color={theme.palette.primary.contrastText}
-            variant="h6"
-            children={"Projects I've Worked On"}
-          />
-
           <ProjectTabList
             handleChange={handleChange}
             items={items}

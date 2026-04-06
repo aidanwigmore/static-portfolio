@@ -15,6 +15,8 @@ import FilmRoutes from '@/data/FilmRoutes';
 import DigitalRoutes from '@/data/DigitalRoutes';
 import Box from '@mui/material/Box';
 
+import ProjectPage from '@/pages/Projects/ProjectPage';
+
 import { useTheme } from '@mui/material/styles';
 
 interface RouterProps {
@@ -38,7 +40,6 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                 <Box
                   sx={{
                     backgroundColor: theme.palette.primary.contrastText,
-                    padding: '1rem',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -81,6 +82,24 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                   }}
                 >
                   <Projects />
+                </Box>
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/fxns"
+            element={
+              <PageTransition>
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.primary.contrastText,
+                    padding: '1rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <ProjectPage/>
                 </Box>
               </PageTransition>
             }

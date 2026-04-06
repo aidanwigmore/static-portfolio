@@ -133,14 +133,13 @@ export default function InstagramGallery({
         variants={containerVariants}
         style={{
           backgroundColor: theme.palette.secondary.main,
-          boxShadow: `0 8px 32px ${theme.palette.primary.dark}`,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           borderRadius: '8px',
         }}
       >
-        <Title color={theme.palette.primary.main} variant={home ? variant : 'h5'}>
+        <Title color={theme.palette.primary.contrastText} variant={home ? variant : 'h5'}>
           {title}
         </Title>
 
@@ -223,19 +222,10 @@ export default function InstagramGallery({
             </Box>
           )}
         </Box>
-        <Box
-          sx={{
-            p: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
           <Box
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', lg: '1fr 1fr 1fr' },
-              gap: '2rem',
             }}
           >
             {posts.map((post, index) => (
@@ -246,22 +236,18 @@ export default function InstagramGallery({
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 variants={itemVariants}
+                style={{
+                  backgroundColor: theme.palette.primary.contrastText,
+                  borderRadius: '8px',
+                  padding: '1rem',
+                  margin: '1rem',
+                }}
               >
-                <Box
-                  sx={{
-                    textAlign: 'center',
-                    boxShadow: `0 4px 16px ${theme.palette.secondary.light}`,
-                    borderRadius: `8px`,
-                    height: `20rem`,
-                  }}
-                >
                   {post.name && (
                     <CustomTypography
                       variant="h6"
                       sx={{
-                        color: home
-                          ? theme.palette.primary.main
-                          : theme.palette.primary.contrastText,
+                        color: theme.palette.primary.main,
                         display: 'block',
                         textDecoration: 'underline',
                       }}
@@ -273,9 +259,7 @@ export default function InstagramGallery({
                     <CustomTypography
                       variant="h5"
                       sx={{
-                        color: home
-                          ? theme.palette.primary.main
-                          : theme.palette.primary.contrastText,
+                        color: theme.palette.primary.main,
                         display: 'block',
                         fontSize: '0.75rem',
                       }}
@@ -288,9 +272,7 @@ export default function InstagramGallery({
                       variant="caption"
                       sx={{
                         display: 'block',
-                        color: home
-                          ? theme.palette.primary.main
-                          : theme.palette.primary.contrastText,
+                        color: theme.palette.primary.main,
                         fontSize: '0.75rem',
                       }}
                     >
@@ -311,11 +293,9 @@ export default function InstagramGallery({
                     }}
                     title={post.name}
                   />
-                </Box>
               </motion.div>
             ))}
           </Box>
-        </Box>
       </motion.div>
     </>
   );

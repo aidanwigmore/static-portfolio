@@ -70,9 +70,6 @@ function ProjectTabListProps({
                 '&:hover': {
                   backgroundColor: theme.palette.secondary.light,
                   color: theme.palette.primary.contrastText,
-                  boxShadow: `
-                    0 4px 16px ${theme.palette.primary.main}
-                  `,
                 },
               }}
               key={index}
@@ -100,7 +97,6 @@ function ProjectTabListProps({
                     display: 'flex',
                     backgroundColor: theme.palette.primary.contrastText,
                     flexDirection: 'column',
-                    boxShadow: `0 4px 16px ${theme.palette.secondary.light}`,
                     borderRadius: '8px',
                   }}
                 >

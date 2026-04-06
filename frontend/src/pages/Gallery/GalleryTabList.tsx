@@ -53,7 +53,6 @@ function GalleryTabList({
               '&:hover': {
                 backgroundColor: theme.palette.secondary.main,
                 color: theme.palette.primary.contrastText,
-                boxShadow: `0 4px 16px ${theme.palette.secondary.light}`,
               },
             }}
             key={index}

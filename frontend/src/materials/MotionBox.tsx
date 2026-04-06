@@ -31,10 +31,10 @@ function CustomMotionBox({ children, id, sx }: CustomMotionBoxProps) {
       variants={sectionVariants}
       style={{
         borderRadius: '8px',
-        boxShadow: `0 4px 16px ${theme.palette.secondary.light}`,
         backgroundColor: theme.palette.secondary.main,
         margin: '1rem',
         padding: '1rem',
+        boxShadow: theme.shadows[24],
         ...sx,
       }}
       id={id}

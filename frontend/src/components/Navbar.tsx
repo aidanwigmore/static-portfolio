@@ -6,7 +6,6 @@ import { Box, MenuItem, Menu } from '@mui/material';
 import {
   ChevronLeft,
   CameraRoll as CameraRollIcon,
-  YouTube as YouTubeIcon,
   SdCard as SdCardIcon,
   Home as HomeIcon,
   AccountTreeTwoTone as AccountTreeTwoToneIcon,
@@ -14,7 +13,10 @@ import {
   LightModeTwoTone as LightModeTwoToneIcon,
   DarkModeTwoTone as DarkModeTwoToneIcon,
 } from '@mui/icons-material';
-
+import EmojiFoodBeverageIcon from '@mui/icons-material/EmojiFoodBeverage';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import CustomDropdown from '@/materials/Dropdown';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CustomButton from '@/materials/Button';
 import CustomTooltip from '@/materials/Tooltip';
 import { CustomTypography } from '@/materials/Typography';
@@ -39,11 +41,28 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
   const theme = useTheme();
   const location = useLocation();
 
+  //media
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  //projects
+  const [projectsAnchorEl, setProjectsAnchorEl] = useState<null | HTMLElement>(null);
+  const projectsOpen = Boolean(projectsAnchorEl);
+
+  //videos
+  const [videosAnchorEl, setVideosAnchorEl] = useState<null | HTMLElement>(null);
+  const videosOpen = Boolean(videosAnchorEl);
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleProjectsClose = () => {
+    setProjectsAnchorEl(null);
+  };
+
+  const handleVideosClose = () => {
+    setVideosAnchorEl(null);
   };
 
   const currentPageName = pageNames[location.pathname] || 'Portfolio';
@@ -56,41 +75,38 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
+          paddingLeft: '0.5rem',
           backgroundColor: theme.palette.secondary.main,
         }}
       >
-        <CustomButton
-          to="/"
-          component={Link}
-          sx={{
-            backgroundColor: theme.palette.secondary.main,
-            color: theme.palette.primary.main,
-            borderRadius: '8px',
-            margin: '0.5rem',
-            '&:hover': {
-              backgroundColor: theme.palette.secondary.light,
-              color: theme.palette.primary.main,
-            },
-          }}
+        <CustomTooltip
+          text={'Navigate to Home Page?'}
+          placement="bottom"
         >
-          <CustomTypography
-            variant="h6"
-            children={
-              <>
-                <HomeIcon />
-              </>
-            }
-            sx={{
-              color: theme.palette.primary.contrastText,
-            }}
-          />
-        </CustomButton>
+          <CustomButton to="/" component={Link}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '0.5rem',
+              }}
+            >
+              {
+                <HomeIcon
+                  sx={{
+                    height: '1.25rem',
+                  }}
+                /> 
+              }
+            </Box>
+          </CustomButton>
+        </CustomTooltip>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'left',
-            gap: 0,
+            alignItems: 'flex-start',
+            marginLeft: '0.5rem',
             justifyContent: 'flex-start',
           }}
         >
@@ -98,7 +114,7 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
             variant="button"
             children={'Current Page:'}
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: theme.palette.primary.main,
               fontSize: '0.5rem',
               marginBottom: '-0.5rem',
             }}
@@ -107,7 +123,7 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
             variant="h6"
             children={currentPageName}
             sx={{
-              color: theme.palette.primary.contrastText,
+              color: theme.palette.primary.main,
             }}
           />
         </Box>
@@ -136,23 +152,53 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
               maxWidth: '90%',
             }}
           >
-            <CustomButton
-              component={Link}
-              to="/projects"
-              sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: '0.5rem',
-              }}
-            >
-              <AccountTreeTwoToneIcon
-                sx={{
-                  height: '1.25rem',
-                }}
-              />
-              Projects
-            </CustomButton>
+            <CustomDropdown 
+              links={[
+                "/fxns",
+                "/ideaburn",
+                "/teabank",
+              ]}
+              onClick={(e) => setProjectsAnchorEl(e.currentTarget)}
+              icons={[
+                <AccountTreeTwoToneIcon sx={{ height: '1.25rem' }} />,
+                <HomeRepairServiceIcon sx={{ height: '1.25rem' }} />,
+                <LightbulbIcon sx={{ height: '1.25rem' }} />,
+                <EmojiFoodBeverageIcon sx={{ height: '1.25rem' }} />,
+              ]}
+              texts={[
+                "FXNS",
+                "IdeaBurn",
+                "TeaBank",
+              ]}
+              parentText="Projects"
+              projectsOpen={projectsOpen}
+              projectsAnchorEl={projectsAnchorEl}
+              handleProjectsClose={handleProjectsClose}
+            />
+
+            <CustomDropdown 
+              links={[
+                "/videos",
+                "/film-media",
+                "/digi-media",
+              ]}
+              onClick={(e) => setVideosAnchorEl(e.currentTarget)}
+              icons={[
+                <AccountTreeTwoToneIcon sx={{ height: '1.25rem' }} />,
+                <HomeRepairServiceIcon sx={{ height: '1.25rem' }} />,
+                <LightbulbIcon sx={{ height: '1.25rem' }} />,
+                <EmojiFoodBeverageIcon sx={{ height: '1.25rem' }} />,
+              ]}
+              texts={[
+                "Batched",
+                "Capstone",
+                "PHP",
+              ]}
+              parentText="Videos"
+              projectsOpen={videosOpen}
+              projectsAnchorEl={videosAnchorEl}
+              handleProjectsClose={handleVideosClose}
+            />
 
             <CustomButton
               component={Link}
@@ -189,29 +235,6 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
                 },
               }}
             >
-              <MenuItem onClick={handleClose}>
-                <CustomButton
-                  key="navbar-videos-custom-button"
-                  component={Link}
-                  to="/videos"
-                >
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      gap: '0.5rem',
-                    }}
-                  >
-                    <YouTubeIcon
-                      sx={{
-                        height: '1.25rem',
-                      }}
-                    />
-                    Videos
-                  </Box>
-                </CustomButton>
-              </MenuItem>
-
               <MenuItem onClick={handleClose}>
                 <CustomButton component={Link} to="/film-media">
                   <Box sx={{ display: 'flex', flexDirection: 'row', gap: '0.5rem' }}>

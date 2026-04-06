@@ -14,6 +14,39 @@ const colors = {
   success: '#1cda29',
 };
 
+const boxShadows = {
+  sm: `0 1px 2px 0`,
+  md: `0 4px 6px -1px`,
+  lg: `0 10px 15px -3px`,
+  xl: `0 20px 25px -5px`,
+  elevation: `0 25px 50px -12px`,
+};
+
+const createShadowArray = (color: string) => [
+  'none',
+  `${boxShadows.sm}${color}`,
+  `${boxShadows.md}${color}`,
+  `${boxShadows.md}${color}`,
+  `${boxShadows.lg}${color}`,
+  `${boxShadows.lg}${color}`,
+  `${boxShadows.lg}${color}`,
+  `${boxShadows.lg}${color}`,
+  `${boxShadows.lg}${color}`,
+  `${boxShadows.xl}${color}`,
+  `${boxShadows.xl}${color}`,
+  `${boxShadows.xl}${color}`,
+  `${boxShadows.xl}${color}`,
+  `${boxShadows.xl}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+  `${boxShadows.elevation}${color}`,
+] as string[];
+
 const sizes = {
   h1: '1rem',
   h2: '1.5rem',
@@ -101,6 +134,7 @@ const lightTheme = createTheme({
       fontWeight: 800,
     },
   },
+  shadows: [...createShadowArray(colors.white)] as any,
   components: {
     MuiTypography: {
       defaultProps: {
@@ -186,6 +220,7 @@ const darkTheme = createTheme({
       fontWeight: 800,
     },
   },
+  shadows: [...createShadowArray(colors.black)] as any,
   components: {
     MuiTypography: {
       defaultProps: {

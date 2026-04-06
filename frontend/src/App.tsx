@@ -3,7 +3,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
+import { CssBaseline } from '@mui/material';
 import { lightTheme, darkTheme } from '@/Theme';
 
 import Router from '@/Router';
@@ -30,6 +30,7 @@ function App() {
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
       <Router isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
     </ThemeProvider>
   );
