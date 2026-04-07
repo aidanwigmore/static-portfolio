@@ -1,25 +1,24 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Home from '@/pages/Home';
-import Videos from '@/pages/Videos/VideosIndex';
-import Projects from '@/pages/Projects/ProjectsIndex';
 
 import Navbar from '@/components/Navbar';
 
 import { PageTransition } from '@/components/PageTransition';
 import { AnimatePresence } from 'framer-motion';
 
-import InstagramGallery from '@/pages/Gallery/InstagramGallery';
-import MRKTRoutes from '@/data/MrktRoutes';
+import InstagramGallery from '@/pages/Gallery/GalleryPage';
 import FilmRoutes from '@/data/FilmRoutes';
 import DigitalRoutes from '@/data/DigitalRoutes';
 import Box from '@mui/material/Box';
 
 import ProjectPage from '@/pages/Projects/ProjectPage';
+import VideoPage from '@/pages/Videos/VideoPage';
 
 import { useTheme } from '@mui/material/styles';
-import ProjectData from './pages/Projects/ProjectData';
+import ProjectData from './data/ProjectData';
 import Title from './components/Title';
+import VideoData from './data/VideoData';
 
 interface RouterProps {
   isDarkMode: boolean;
@@ -31,6 +30,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
   const theme = useTheme();
 
   const items = ProjectData;
+  const videoItems = VideoData;
   
   return (
     <>
@@ -41,52 +41,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
             path="/"
             element={
               <PageTransition>
-                <Box
-                  sx={{
-                    backgroundColor: theme.palette.primary.contrastText,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
                   <Home />
-                </Box>
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/videos"
-            element={
-              <PageTransition>
-                <Box
-                  sx={{
-                    backgroundColor: theme.palette.primary.contrastText,
-                    padding: '1rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Videos />
-                </Box>
-              </PageTransition>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <PageTransition>
-                <Box
-                  sx={{
-                    backgroundColor: theme.palette.primary.contrastText,
-                    padding: '1rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Projects />
-                </Box>
               </PageTransition>
             }
           />
@@ -99,6 +54,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     backgroundColor: theme.palette.secondary.main,
                     margin: '1rem',
                     borderRadius: '8px',
+                    width: theme.widths?.card,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -109,7 +65,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     variant="h6"
                     children={"FXNS - Tool Making Application"}
                   />
-                  <ProjectPage items={items[0]} />
+                  <ProjectPage items={items[2]} />
                 </Box>
               </PageTransition>
             }
@@ -123,6 +79,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     backgroundColor: theme.palette.secondary.main,
                     margin: '1rem',
                     borderRadius: '8px',
+                    width: theme.widths?.card,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -147,6 +104,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     backgroundColor: theme.palette.secondary.main,
                     margin: '1rem',
                     borderRadius: '8px',
+                    width: theme.widths?.card,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -157,31 +115,66 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     variant="h6"
                     children={"IdeaBurn - Idea Management Platform"}
                   />
-                  <ProjectPage items={items[2]} />
+                  <ProjectPage items={items[0]} />
                 </Box>
               </PageTransition>
             }
           />
           <Route
-            path="/mrkt-media"
+            path="/batched-videos"
             element={
               <PageTransition>
                 <Box
                   sx={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
                     display: 'flex',
                     flexDirection: 'column',
-                    backgroundColor: theme.palette.secondary.main,
+                    alignItems: 'center',
                   }}
                 >
-                  <InstagramGallery
-                    color={theme.palette.primary.main}
-                    title={'MRKTBox Memories'}
-                    routes={MRKTRoutes}
-                  />
+                  <VideoPage item={videoItems[0]}/>
                 </Box>
-              </PageTransition>
+              </PageTransition> 
+            }
+          />
+          <Route
+            path="/capstone-videos"
+            element={
+              <PageTransition>
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <VideoPage item={videoItems[1]}/>
+                </Box>
+              </PageTransition> 
+            }
+          />
+          <Route
+            path="/php-videos"
+            element={
+              <PageTransition>
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <VideoPage item={videoItems[2]}/>
+                </Box>
+              </PageTransition> 
             }
           />
           <Route
@@ -197,7 +190,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     alignItems: 'center',
                   }}
                 >
-                  <InstagramGallery title={'Film Media'} routes={FilmRoutes} />
+                  <InstagramGallery home={false} title={'Film Media'} routes={FilmRoutes} />
                 </Box>
               </PageTransition>
             }
@@ -215,7 +208,7 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
                     alignItems: 'center',
                   }}
                 >
-                  <InstagramGallery title={'Digital Media'} routes={DigitalRoutes} />
+                  <InstagramGallery home={false} title={'Digital Media'} routes={DigitalRoutes} />
                 </Box>
               </PageTransition>
             }

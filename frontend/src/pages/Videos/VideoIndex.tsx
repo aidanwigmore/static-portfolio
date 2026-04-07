@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+import TabContext from '@mui/lab/TabContext';
+
+import VideoData from '@/data/VideoData';
+import YoutubeFrame from '@/pages/Videos/YoutubeFrame';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
@@ -9,99 +13,112 @@ import { CustomTypography } from '@/materials/Typography';
 
 import { CustomAccordion } from '@/materials/Accordion';
 
-import TabList from '@mui/lab/TabList';
 import { useTheme } from '@mui/material/styles';
 import CustomButton from '@/materials/Button';
+import CustomTabList from '@/materials/TabList';
 
-interface VideosTabListProps {
-  children?: React.ReactNode;
-  handleChange: (event: React.SyntheticEvent, newValue: number) => void;
-  items: {
-    title: string;
-    description: string;
-    channel: string;
-    src: string[];
-    steps: {
-      titles: string[];
-      descriptions: string[];
-      ratingCodes: string[];
-      uploadDates: string[];
-    };
-    stepsLabels: React.ReactElement[];
-  }[];
-  currentPage: number;
-  home?: boolean;
+interface VideoIndexProps {
 }
 
-function VideosTabList({
-  handleChange,
-  items,
-  currentPage,
-  home,
-}: VideosTabListProps) {
+export default function VideoIndex({  }: VideoIndexProps) {
   const theme = useTheme();
+
+  const items = VideoData;
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const [value, setValue] = useState<number>(1);
+  const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
+    setCurrentPage(newValue);
+    setValue(newValue);
+  };
+
   const [activeSteps, setActiveSteps] = useState<number[]>(items.map(() => 0));
-  const [skipped, setSkipped] = useState<Set<number>>(new Set());
+    const [skipped, setSkipped] = useState<Set<number>>(new Set());
+  
+    const isStepOptional = (step: number) => step === 1;
+    const isStepSkipped = (itemIndex: number, step: number) =>
+      skipped.has(itemIndex * 100 + step);
+  
+    const handleNext = (itemIndex: number) => {
+      setActiveSteps((prevActiveStep) => {
+        const newSteps = [...prevActiveStep];
+        newSteps[itemIndex] += 1;
+        return newSteps;
+      });
+    };
+  
+    const handleBack = (itemIndex: number) => {
+      setActiveSteps((prevActiveStep) => {
+        const newSteps = [...prevActiveStep];
+        newSteps[itemIndex] -= 1;
+        return newSteps;
+      });
+    };
+  
+    const handleSkip = (itemIndex: number) => {
+      if (!isStepOptional(activeSteps[itemIndex])) {
+        return;
+      }
+  
+      setActiveSteps((prevActiveStep) => {
+        const newSteps = [...prevActiveStep];
+        newSteps[itemIndex] += 1;
+        return newSteps;
+      });
+      setSkipped((prevSkipped) => {
+        const newSkipped = new Set(prevSkipped.values());
+        newSkipped.add(itemIndex * 100 + activeSteps[itemIndex]);
+        return newSkipped;
+      });
+    };
+  
+    const handleReset = (itemIndex: number) => {
+      setActiveSteps((prevActiveStep) => {
+        const newSteps = [...prevActiveStep];
+        newSteps[itemIndex] = 0;
+        return newSteps;
+      });
+    };
 
-  const isStepOptional = (step: number) => step === 1;
-  const isStepSkipped = (itemIndex: number, step: number) =>
-    skipped.has(itemIndex * 100 + step);
+  React.useEffect(() => {
+    const handleTabWheel = (event: Event) => {
+      const wheelEvent = event as WheelEvent;
+      if (wheelEvent.shiftKey) {
+        event.preventDefault();
+        const nextValue =
+          wheelEvent.deltaY > 0
+            ? Math.min(value + 1, items.length)
+            : Math.max(value - 1, 1);
 
-  const handleNext = (itemIndex: number) => {
-    setActiveSteps((prevActiveStep) => {
-      const newSteps = [...prevActiveStep];
-      newSteps[itemIndex] += 1;
-      return newSteps;
-    });
-  };
+        if (nextValue !== value) {
+          setValue(nextValue);
+          setCurrentPage(nextValue);
+        }
+      }
+    };
 
-  const handleBack = (itemIndex: number) => {
-    setActiveSteps((prevActiveStep) => {
-      const newSteps = [...prevActiveStep];
-      newSteps[itemIndex] -= 1;
-      return newSteps;
-    });
-  };
-
-  const handleSkip = (itemIndex: number) => {
-    if (!isStepOptional(activeSteps[itemIndex])) {
-      return;
+    const tabList = document.querySelector('[aria-label="tabslist"]');
+    if (tabList) {
+      tabList.addEventListener('wheel', handleTabWheel as EventListener, {
+        passive: false,
+      });
     }
 
-    setActiveSteps((prevActiveStep) => {
-      const newSteps = [...prevActiveStep];
-      newSteps[itemIndex] += 1;
-      return newSteps;
-    });
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(itemIndex * 100 + activeSteps[itemIndex]);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = (itemIndex: number) => {
-    setActiveSteps((prevActiveStep) => {
-      const newSteps = [...prevActiveStep];
-      newSteps[itemIndex] = 0;
-      return newSteps;
-    });
-  };
+    return () => {
+      if (tabList) {
+        tabList.removeEventListener('wheel', handleTabWheel as EventListener);
+      }
+    };
+  }, [value, items.length]);
 
   return (
-    <>
+    <TabContext value={value}>
       <List dense={false}>
-        <TabList
+        <CustomTabList
+          id={'videos-tablist'}
           onChange={handleChange}
           aria-label="video-tabslist"
-          sx={{
-            '& .MuiTabs-flexContainer': {
-              justifyContent: 'space-evenly',
-              flexWrap: 'wrap',
-              gap: '8px',
-            },
-            width: '100%',
-          }}
         >
           {items.map((item, index) => (
             <Tab
@@ -119,7 +136,7 @@ function VideosTabList({
               value={index + 1}
             />
           ))}
-        </TabList>
+        </CustomTabList>
         {items
           .filter((item) => items.indexOf(item) === currentPage - 1)
           .map((item) => {
@@ -131,12 +148,14 @@ function VideosTabList({
               <ListItem
                 key={itemIndex}
                 sx={{
+                  marginTop: '1rem',
+                  alignSelf: 'flex-start',
+                  backgroundColor: theme.palette.primary.contrastText,
                   borderRadius: '8px',
                   display: 'flex',
                   justifyContent: 'center',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 2,
                 }}
               >
                 <Box
@@ -152,21 +171,12 @@ function VideosTabList({
                 >
                   <CustomTypography
                     color={theme.palette.primary.main}
-                    variant={home ? 'h6' : 'h4'}
+                    variant={'h6'}
                     gutterBottom
                     component="span"
                     sx={{ flexWrap: 'wrap', textAlign: 'center' }}
                   >
-                    {items[currentPage - 1].title}
-                  </CustomTypography>
-                  <CustomTypography
-                    color={theme.palette.primary.main}
-                    variant={home ? 'caption' : 'caption'}
-                    gutterBottom
-                    component="span"
-                    sx={{ flexWrap: 'wrap', textAlign: 'center' }}
-                  >
-                    {item.description}
+                    {item.title} {item.description}
                   </CustomTypography>
                   <Stepper activeStep={currentStep}>
                     {item.steps.titles.map((label: string, stepIndex: number) => {
@@ -181,14 +191,17 @@ function VideosTabList({
                       return (
                         <Step
                           sx={{
-                            '& circle': {
-                              fill: theme.palette.primary.main,
+                            // Override default step icon colors
+                            // when stepIndex === currentStep, its the active one and should be colored accordingly
+                            '&.Mui-completed': {
+                              '& .MuiStepIcon-root': {
+                                color: `${theme.palette.secondary.dark} !important`,
+                              },
                             },
-                            '&.Mui-active circle': {
-                              fill: theme.palette.primary.main,
-                            },
-                            '&.Mui-completed circle': {
-                              fill: theme.palette.primary.main,
+                            '& .MuiStepIcon-root': {
+                              color: stepIndex === activeSteps[itemIndex] 
+                              ? theme.palette.secondary.light
+                              : theme.palette.secondary.main,
                             },
                           }}
                           key={`step-${itemIndex}-${stepIndex}`}
@@ -203,7 +216,7 @@ function VideosTabList({
                             >
                               <CustomTypography
                                 color={theme.palette.primary.main}
-                                variant={home ? 'caption' : 'caption'}
+                                variant={'caption'}
                                 gutterBottom
                                 component="span"
                                 sx={{
@@ -217,7 +230,7 @@ function VideosTabList({
                               </CustomTypography>
                               <CustomTypography
                                 color={theme.palette.primary.main}
-                                variant={home ? 'caption' : 'caption'}
+                                variant={'caption'}
                                 gutterBottom
                                 component="span"
                                 sx={{
@@ -233,33 +246,42 @@ function VideosTabList({
                       );
                     })}
                   </Stepper>
+                  
                   <Box>
                     {isCompleted ? (
                       <React.Fragment>
-                        <CustomTypography sx={{ mt: 1, mb: 1 }}>
+                        <CustomTypography 
+                          variant={'caption'}
+                          gutterBottom
+                          component="span"
+                          color={theme.palette.primary.main} 
+                        >
                           You can find more videos on the {item.channel} Youtube
                           Channel. Thank you.
+                        </CustomTypography>
+                          <Box sx={{ flex: '1 1 auto' }} />
+                          <CustomButton onClick={() => handleReset(itemIndex)}>
+                            Reset
+                          </CustomButton>
+                      </React.Fragment>
+                    ) : (
+                      <React.Fragment>
+                        <CustomTypography
+                          color={theme.palette.primary.main}
+                          variant={'caption'}
+                          gutterBottom
+                          component="span"
+                          sx={{
+                            textAlign: 'center',
+                            maxWidth: '45vw',
+                          }}
+                        >
+                          {item.steps.descriptions[currentStep]}
                         </CustomTypography>
                         <Box
                           sx={{
                             display: 'flex',
                             flexDirection: 'row',
-                            pt: 2,
-                          }}
-                        >
-                          <Box sx={{ flex: '1 1 auto' }} />
-                          <CustomButton onClick={() => handleReset(itemIndex)}>
-                            Reset
-                          </CustomButton>
-                        </Box>
-                      </React.Fragment>
-                    ) : (
-                      <React.Fragment>
-                        <Box
-                          sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            pt: 2,
                           }}
                         >
                           <CustomButton
@@ -293,6 +315,8 @@ function VideosTabList({
                     )}
                   </Box>
 
+                  <YoutubeFrame source={item.src} currentStep={currentStep} />
+
                   <Box
                     sx={{
                       display: 'flex',
@@ -300,41 +324,6 @@ function VideosTabList({
                       flexDirection: 'column',
                     }}
                   >
-                    <CustomTypography
-                      color={theme.palette.primary.main}
-                      variant={home ? 'caption' : 'caption'}
-                      gutterBottom
-                      component="span"
-                      sx={{
-                        flexWrap: 'wrap',
-                        textAlign: 'center',
-                      }}
-                    >
-                      {item.steps.descriptions[currentStep]}
-                    </CustomTypography>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        height: { sm: '25vw' },
-                      }}
-                    >
-                      <iframe
-                        src={item.src[currentStep % item.src.length]}
-                        title="YouTube video player"
-                        style={{
-                          borderRadius: '8px',
-                          width: '50vw',
-                          height: '20vw',
-                        }}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                    </Box>
-
                     {/* transcriptions */}
                     {item.stepsLabels ? (
                       <CustomAccordion item={item} currentStep={currentStep} />
@@ -347,8 +336,6 @@ function VideosTabList({
             );
           })}
       </List>
-    </>
+    </TabContext>
   );
 }
-
-export default VideosTabList;

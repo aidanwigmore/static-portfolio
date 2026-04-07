@@ -4,6 +4,20 @@ import { lighten, darken } from '@mui/material/styles';
 import '@fontsource/doto';
 import '@fontsource/cutive-mono';
 
+declare module '@mui/material/styles' {
+  interface ThemeOptions {
+    widths?: {
+      card: number | string;
+    };
+  }
+
+  interface Theme {
+    widths?: {
+      card: number | string;
+    };
+  }
+}
+
 const colors = {
   white: '#FFFFFF',
   black: '#121212',
@@ -61,6 +75,10 @@ const sizes = {
   overline: '0.625rem',
   icon: '1.5rem',
 };
+
+const widths = {
+  card: '75vw',
+}
 
 const fonts = {
   normal: 'sans-serif',
@@ -133,6 +151,9 @@ const lightTheme = createTheme({
       fontFamily: fonts.button,
       fontWeight: 800,
     },
+  },
+  widths: {
+    card: widths.card,
   },
   shadows: [...createShadowArray(colors.white)] as any,
   components: {
@@ -219,6 +240,9 @@ const darkTheme = createTheme({
       fontFamily: fonts.button,
       fontWeight: 800,
     },
+  },
+  widths: {
+    card: widths.card,
   },
   shadows: [...createShadowArray(colors.black)] as any,
   components: {

@@ -1,6 +1,6 @@
-import Videos from '@/pages/Videos/VideosIndex';
-import Projects from '@/pages/Projects/ProjectsIndex';
-import InstagramGalleries from '@/pages/Gallery/InstagramGalleryIndex';
+import VideosIndex from '@/pages/Videos/VideoIndex';
+import ProjectsIndex from '@/pages/Projects/ProjectIndex';
+import InstagramGalleryIndex from '@/pages/Gallery/InstagramGalleryIndex';
 
 import Title from '@/components/Title';
 
@@ -16,19 +16,29 @@ export default function Home() {
     <>
       <MotionBox>
         <Title
-          color={theme.palette.primary.contrastText}
+          color={theme.palette.secondary.contrastText}
           variant="h6"
           children={"Projects I've Worked On"}
         />
-        <Projects home={true} />
+        <ProjectsIndex/>
       </MotionBox>
 
       <MotionBox>
-        <Videos home={true} />
+        <Title
+          color={theme.palette.secondary.contrastText}
+          variant="h6"
+          children={"Videos I've Worked On"}
+        />
+        <VideosIndex/>
       </MotionBox>
 
       <MotionBox>
-        <InstagramGalleries home={true} />
+        <Title
+          color={theme.palette.secondary.contrastText}
+          variant="h6"
+          children={"Instagram Galleries"}
+        />
+        <InstagramGalleryIndex/>
       </MotionBox>
     </>
   );

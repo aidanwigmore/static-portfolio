@@ -30,6 +30,7 @@ function CustomMotionBox({ children, id, sx }: CustomMotionBoxProps) {
       viewport={{ once: false, amount: 0.2 }}
       variants={sectionVariants}
       style={{
+        width: theme.widths?.card,
         borderRadius: '8px',
         backgroundColor: theme.palette.secondary.main,
         margin: '1rem',

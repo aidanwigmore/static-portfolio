@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Tab } from '@mui/material';
 
 import TabContext from '@mui/lab/TabContext';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 import FilmRoutes from '@/data/FilmRoutes';
 import DigitalRoutes from '@/data/DigitalRoutes';
 
-import Title from '@/components/Title';
-
-import GalleryTabList from '@/pages/Gallery/GalleryTabList';
-
 import { useTheme } from '@mui/material/styles';
+import CustomTabList from '@/materials/TabList';
+import GalleryPage from './GalleryPage';
 
 interface InstagramGalleriesProps {
   children?: React.ReactNode;
@@ -82,19 +82,60 @@ function InstagramGalleries({ home }: InstagramGalleriesProps) {
             backgroundColor: theme.palette.secondary.main,
           }}
         >
-          {home ? (
-            <Title
-              color={theme.palette.primary.contrastText}
-              variant="h6"
-              children={'My Instagram Media'}
-            />
-          ) : undefined}
-          <GalleryTabList
-            galleries={galleries}
-            handleChange={handleChange}
-            currentPage={currentPage}
-            home={home}
-          />
+          <List dense={false}>
+            <CustomTabList
+              id={'projects-tabslist'}
+              onChange={handleChange}
+              ariaLabel="projects-tabslist"
+            >
+              {galleries.map((gallery, index) => (
+                <Tab
+                  sx={{
+                    backgroundColor: theme.palette.primary.contrastText,
+                    color: theme.palette.primary.main,
+                    borderRadius: '8px',
+                    '&:hover': {
+                      backgroundColor: theme.palette.secondary.light,
+                      color: theme.palette.primary.contrastText,
+                    },
+                  }}
+                  key={index}
+                  label={`${gallery.title}`}
+                  value={index + 1}
+                />
+              ))}
+            </CustomTabList>
+            {galleries
+              .filter((_, index) => index === currentPage - 1)
+              .map((gallery) => {
+                const itemIndex = currentPage - 1;
+
+                return (
+                  <ListItem key={itemIndex}>
+                    <Box
+                      sx={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        padding: '1rem',
+                      }}
+                    >
+                      <GalleryPage
+                        home={home}
+                        variant={home ? 'h6' : 'h4'}
+                        title={
+                          itemIndex > 0
+                            ? `${gallery.title} Media`
+                            : `${gallery.title} Memories`
+                        }
+                        routes={gallery.routes}
+                      />
+                    </Box>
+                  </ListItem>
+                );
+              })}
+          </List>
         </Box>
       </TabContext>
     </>

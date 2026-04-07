@@ -1,4 +1,4 @@
-import { Box, Pagination, MenuItem, Select, FormControl } from '@mui/material';
+import { Box, Pagination, MenuItem, Select, FormControl, SelectChangeEvent } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
@@ -48,7 +48,7 @@ export default function InstagramGallery({
 
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState<SortOrder>('order');
-  const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
 
   const allPosts = Object.entries(routes[0]).map(
     ([name, { link, coord, developed, rating, order }]) => ({
@@ -61,8 +61,8 @@ export default function InstagramGallery({
     })
   );
 
-  const handleItemsPerPageChange = (event: React.ChangeEvent<unknown>) => {
-    const value = (event.target as HTMLSelectElement).value;
+  const handleItemsPerPageChange = (event: { target: { value: string | number } }) => {
+    const value = event.target.value;
     if (value === 'all') {
       setItemsPerPage(allPosts.length);
     } else {
@@ -71,8 +71,8 @@ export default function InstagramGallery({
     setCurrentPage(1);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<unknown>) => {
-    setSortOrder((event.target as HTMLSelectElement).value as SortOrder);
+  const handleSortChange = (event: SelectChangeEvent<unknown>) => {
+    setSortOrder(event.target.value as SortOrder);
     setCurrentPage(1);
   };
 
@@ -135,11 +135,12 @@ export default function InstagramGallery({
           backgroundColor: theme.palette.secondary.main,
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
           borderRadius: '8px',
         }}
       >
-        <Title color={theme.palette.primary.contrastText} variant={home ? variant : 'h5'}>
+        <Title color={theme.palette.primary.contrastText} variant={home ? variant : 'h6'}>
           {title}
         </Title>
 
@@ -147,7 +148,7 @@ export default function InstagramGallery({
           <FormControl sx={{ mb: 3, minWidth: 200 }}>
             <Select
               value={itemsPerPage}
-              onChange={() => handleItemsPerPageChange}
+              onChange={handleItemsPerPageChange}
               sx={{
                 backgroundColor: theme.palette.primary.contrastText,
                 color: theme.palette.primary.main,
@@ -165,13 +166,13 @@ export default function InstagramGallery({
               <MenuItem value={3}>3 per page</MenuItem>
               <MenuItem value={6}>6 per page</MenuItem>
               <MenuItem value={12}>12 per page</MenuItem>
-              <MenuItem value={sortedPosts.length}>All ({sortedPosts.length})</MenuItem>
+              <MenuItem value="all">All ({sortedPosts.length})</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ mb: 3, minWidth: 200 }}>
             <Select
               value={sortOrder}
-              onChange={() => handleSortChange}
+              onChange={handleSortChange}
               sx={{
                 backgroundColor: theme.palette.primary.contrastText,
                 color: theme.palette.primary.main,
@@ -208,7 +209,7 @@ export default function InstagramGallery({
                 size="large"
                 sx={{
                   '& .MuiPaginationItem-root': {
-                    color: theme.palette.primary.main,
+                    color: theme.palette.primary.contrastText,
                     '&:hover': {
                       backgroundColor: theme.palette.secondary.light,
                     },
@@ -241,6 +242,7 @@ export default function InstagramGallery({
                   borderRadius: '8px',
                   padding: '1rem',
                   margin: '1rem',
+                  alignSelf: 'center',
                 }}
               >
                   {post.name && (
@@ -286,10 +288,11 @@ export default function InstagramGallery({
                     scrolling="no"
                     style={{
                       display: 'inline-block',
-                      borderRadius: '8px',
-                      height: '15rem',
-                      clipPath: 'inset(50px 0 4rem 0)',
+                      clipPath: 'inset(2.5rem 0 0.5rem 0)',
+                      height: home !== undefined ? '45vh' : '14.6vw',
                       border: 'none',
+                      width: '100%',
+                      pointerEvents: 'none',
                     }}
                     title={post.name}
                   />

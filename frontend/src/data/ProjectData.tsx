@@ -1,14 +1,5 @@
 export default [
     {
-    title: "Fxns ",
-    description: [
-        "Identified and resolved workflow bugs while improving frontend readability and maintainability.",
-        "Participated in bi-weekly scrum meetings with progress reporting and task tracking.",
-    ],
-    ratingCode: 'fxns',
-    src: "",
-    },
-    {
     title: "IdeaBurn ",
     description: [
         "Designed and deployed a full stack idea-sharing platform using Django, React, and SQLite.",
@@ -46,5 +37,14 @@ export default [
     ],
     ratingCode: 'teabank',
     src: "https://teabankclient-d9c62f61e84a.herokuapp.com/",
+    },
+    {
+    title: "Fxns ",
+    description: [
+        "Identified and resolved workflow bugs while improving frontend readability and maintainability.",
+        "Participated in bi-weekly scrum meetings with progress reporting and task tracking.",
+    ],
+    ratingCode: 'fxns',
+    src: "",
     },
 ];

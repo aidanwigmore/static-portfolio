@@ -2,26 +2,28 @@ import Box from '@mui/material/Box';
 
 import { useTheme } from '@mui/material/styles';
 
+import CustomTooltip from '@/materials/Tooltip';
+
 import CustomLink from '@/materials/Link';
 import { CustomTypography } from '@/materials/Typography';
 
 interface ProjectPageProps {
-    items: (
-        | {
-            title: string;
-            description: string[];
-            ratingCode: string;
-            src: string;
-            images?: undefined;
-        }
-        | {
-            title: string;
-            description: string[];
-            images: string[];
-            ratingCode: string;
-            src: string;
-        }
-    );
+  items: (
+      | {
+          title: string;
+          description: string[];
+          ratingCode: string;
+          src: string;
+          images?: undefined;
+      }
+      | {
+          title: string;
+          description: string[];
+          images: string[];
+          ratingCode: string;
+          src: string;
+      }
+  );
 }
 
 function ProjectPage({ items }: ProjectPageProps) {
@@ -38,6 +40,8 @@ function ProjectPage({ items }: ProjectPageProps) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     display: 'flex',
+                    padding: '1rem',
+                    margin: '1rem',
                     backgroundColor: theme.palette.primary.contrastText,
                     flexDirection: 'column',
                     borderRadius: '8px',
@@ -60,10 +64,10 @@ function ProjectPage({ items }: ProjectPageProps) {
                           gap: '0.5rem',
                         }}
                       >
-                        {/* <CustomTooltip
+                        <CustomTooltip
                           text={`View ${items.src} in a new tab`}
                           placement="top"
-                        > */}
+                        >
                           <CustomLink
                             onClick={() => handleNavigateNewTab(items.src)}
                             href={items.src}
@@ -75,7 +79,7 @@ function ProjectPage({ items }: ProjectPageProps) {
                               {items.title}
                             </CustomTypography>
                           </CustomLink>
-                        {/* </CustomTooltip> */}
+                        </CustomTooltip>
                       </Box>
                       {items.description.map((desc: string, descIndex: number) => (
                         <CustomTypography

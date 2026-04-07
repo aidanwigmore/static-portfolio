@@ -12,14 +12,14 @@ export default [
       ],
       steps: {
         titles: [
-          'Picking Up Catering Orders from Strathcona MRKT',
-          'Subscribing To MRKTBox',
-          'Signing Up To MRKTBox',
+          'How to: Catering Pickup',
+          'How to: Subscribe',
+          'How to: Sign Up',
         ],
         descriptions: [
-          '',
-          '',
-          '',
+          'In this demonstration, I show the process of picking up catering order from MRKTBox. This involves coordinating with the catering service, ensuring the order is correct, and managing the logistics of transportation and setup at the event venue.',
+          'In this demonstration, I show the process of subscribing to MRKTBox. This involves navigating the subscription options, selecting the appropriate plan, and completing the payment process.',
+          'In this demonstration, I show the process of signing up for MRKTBox. This involves creating an account, providing necessary information, and verifying the account through email confirmation.',
         ],
         ratingCodes: [
           'batched-support-1',
@@ -50,9 +50,9 @@ export default [
           'Capstone Report 4', 
         ],
         descriptions: [
-          '',
-          '',
-          '',
+          'In this demonstration, I show the process of creating the final report for the Capstone Project. This involves compiling research, analyzing data, and presenting findings in a structured format.',
+          'In this demonstration, I show the process of creating the third report for the Capstone Project. This involves gathering additional data, refining analysis, and updating the report with new insights.',
+          'In this demonstration, I show the process of creating the fourth report for the Capstone Project. This involves finalizing the report, ensuring all sections are complete, and preparing it for submission.',
         ],
         ratingCodes: [
           'capstone-1',
@@ -81,9 +81,9 @@ export default [
           'Assignment 5', 'Assignment 6','Assignment 7'
         ],
         descriptions: [
-          '',
-          '',
-          '',
+          'In this demonstration, I show the process of completing Assignment 5 for the PHP course. This involves understanding the requirements, writing the necessary code, and testing the solution.',
+          'In this demonstration, I show the process of completing Assignment 6 for the PHP course. This involves analyzing the problem, implementing the solution, and verifying its correctness.',
+          'In this demonstration, I show the process of completing Assignment 7 for the PHP course. This involves designing the solution, coding the implementation, and ensuring it meets the specified criteria.',
         ],
         ratingCodes: [
           'php-1',
@@ -112,9 +112,9 @@ export default [
           "Entrepreneurship in today's world - Video Pitch", "Tech Writing Presentation - Product Evaluation and Recommendation", "Tech Writing Presentation 3 (Job posting)"
         ],
         descriptions: [
-          'test',
-          '',
-          '',
+          "In this demonstration, I show the process of delivering a video pitch on entrepreneurship in today's world. This involves preparing the content, practicing the delivery, and presenting the pitch effectively.",
+          "In this demonstration, I show the process of evaluating and recommending a product in a technical writing presentation. This involves researching the product, analyzing its features, and presenting the findings clearly.",
+          "In this demonstration, I show the process of creating a technical writing presentation based on a job posting. This involves analyzing the job requirements, preparing the content, and delivering the presentation effectively.",
         ],
         ratingCodes: [
           'soft-skills-1',

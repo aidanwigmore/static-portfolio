@@ -30,8 +30,12 @@ interface NavBarProps {
 
 const pageNames: Record<string, string> = {
   '/': 'Home Page',
-  '/projects': 'My Project Page',
-  '/videos': 'My Videos Page',
+  '/fxns':'My FXNS Page',
+  '/ideaburn':'My IdeaBurn Page',
+  '/teabank':'My TeaBank Page',
+  '/batched-videos':'My Batched Videos Page',
+  '/capstone-videos':'My Capstone Videos Page',
+  '/php-videos':'My PHP Videos Page',
   '/film-media': 'My Film Media',
   '/digi-media': 'My Digital Media',
   '/gallery': 'My Protected Galleries',
@@ -114,7 +118,7 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
             variant="button"
             children={'Current Page:'}
             sx={{
-              color: theme.palette.primary.main,
+              color: theme.palette.secondary.contrastText,
               fontSize: '0.5rem',
               marginBottom: '-0.5rem',
             }}
@@ -123,7 +127,7 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
             variant="h6"
             children={currentPageName}
             sx={{
-              color: theme.palette.primary.main,
+              color: theme.palette.secondary.contrastText,
             }}
           />
         </Box>
@@ -178,9 +182,9 @@ export default function NavBar({ isDarkMode, toggleTheme }: NavBarProps) {
 
             <CustomDropdown 
               links={[
-                "/videos",
-                "/film-media",
-                "/digi-media",
+                "/batched-videos",
+                "/capstone-videos",
+                "/php-videos",
               ]}
               onClick={(e) => setVideosAnchorEl(e.currentTarget)}
               icons={[

@@ -1,4 +1,4 @@
-import { CustomTypography } from "../../materials/Typography";
+import { CustomTypography } from "@/materials/Typography";
 
 export default [
     {
