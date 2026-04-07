@@ -6,7 +6,7 @@ export default [
         "Participated in bi-weekly scrum meetings with progress reporting and task tracking.",
     ],
     ratingCode: 'fxns',
-    src: "https://www.fxns.ca/",
+    src: "",
     },
     {
     title: "IdeaBurn ",

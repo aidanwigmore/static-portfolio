@@ -18,6 +18,8 @@ import Box from '@mui/material/Box';
 import ProjectPage from '@/pages/Projects/ProjectPage';
 
 import { useTheme } from '@mui/material/styles';
+import ProjectData from './pages/Projects/ProjectData';
+import Title from './components/Title';
 
 interface RouterProps {
   isDarkMode: boolean;
@@ -28,6 +30,8 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
   const location = useLocation();
   const theme = useTheme();
 
+  const items = ProjectData;
+  
   return (
     <>
       <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
@@ -92,14 +96,68 @@ function Router({ isDarkMode, toggleTheme }: RouterProps) {
               <PageTransition>
                 <Box
                   sx={{
-                    backgroundColor: theme.palette.primary.contrastText,
-                    padding: '1rem',
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                   }}
                 >
-                  <ProjectPage/>
+                  <Title
+                    color={theme.palette.primary.contrastText}
+                    variant="h6"
+                    children={"FXNS - Tool Making Application"}
+                  />
+                  <ProjectPage items={items[0]} />
+                </Box>
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/teabank"
+            element={
+              <PageTransition>
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Title
+                    color={theme.palette.primary.contrastText}
+                    variant="h6"
+                    children={"TeaBank - Tea Purchasing E-Commerce Platform"}
+                  />
+                  <ProjectPage items={items[1]} />
+                </Box>
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/ideaburn"
+            element={
+              <PageTransition>
+                <Box
+                  sx={{
+                    backgroundColor: theme.palette.secondary.main,
+                    margin: '1rem',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Title
+                    color={theme.palette.primary.contrastText}
+                    variant="h6"
+                    children={"IdeaBurn - Idea Management Platform"}
+                  />
+                  <ProjectPage items={items[2]} />
                 </Box>
               </PageTransition>
             }
