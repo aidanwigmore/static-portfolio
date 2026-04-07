@@ -6,9 +6,9 @@ export default [
       description: "Youtube Demonstrations",
       channel: "Batched Support",
       src: [
-        "https://www.youtube.com/embed/IJFOHNK-sBY",
-        "https://www.youtube.com/embed/eX7XDNOrv90",
-        "https://www.youtube.com/embed/lQwYJoPhWwQ",
+        "https://www.youtube-nocookie.com/embed/IJFOHNK-sBY",
+        "https://www.youtube-nocookie.com/embed/eX7XDNOrv90",
+        "https://www.youtube-nocookie.com/embed/lQwYJoPhWwQ",
       ],
       steps: {
         titles: [
