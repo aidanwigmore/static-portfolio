@@ -6,9 +6,9 @@ export default [
       description: "Youtube Demonstrations",
       channel: "Batched Support",
       src: [
-        "https://www.youtube.com/embed/IJFOHNK-sBY?si=PXlTKlbJS7qaHsPR",
-        "https://www.youtube.com/embed/eX7XDNOrv90?si=qR4uxR5TTRUHuZ-B",
-        "https://www.youtube.com/embed/lQwYJoPhWwQ?si=WmTaPeI0Ib-7s82c",
+        "https://www.youtube.com/embed/IJFOHNK-sBY",
+        "https://www.youtube.com/embed/eX7XDNOrv90",
+        "https://www.youtube.com/embed/lQwYJoPhWwQ",
       ],
       steps: {
         titles: [
@@ -39,9 +39,9 @@ export default [
       description: "TeaBank Demonstrations",
       channel: "aidanOdyssey",
       src: [
-        "https://www.youtube.com/embed/aFiUmvcF3Xw?si=R-781N2WEAGsqnZF",
-        "https://www.youtube.com/embed/1SbgMCq4-PM?si=yABv-EKPftpFo7fv",
-        "https://www.youtube.com/embed/fVJ_0QYCSoI?si=p7jX3Wn7ylXdaZxE",
+        "https://www.youtube.com/embed/aFiUmvcF3Xw",
+        "https://www.youtube.com/embed/1SbgMCq4-PM",
+        "https://www.youtube.com/embed/fVJ_0QYCSoI",
       ],
       steps: {
         titles: [
@@ -72,9 +72,9 @@ export default [
       description: "PHP Course Demonstrations",
       channel: "aidanOdyssey",
       src: [
-        "https://www.youtube.com/embed/enO66A4MEjA?si=hljKuYuVjIETDRgi",
-        "https://www.youtube.com/embed/otVmSjKBpyQ?si=2JoxDWcCQPJFrSVl",
-        "https://www.youtube.com/embed/XFhhSQ-mEgM?si=-UdqBiqhLYOWUhhK",
+        "https://www.youtube.com/embed/enO66A4MEjA",
+        "https://www.youtube.com/embed/otVmSjKBpyQ",
+        "https://www.youtube.com/embed/XFhhSQ-mEgM",
       ],
       steps: {
         titles: [
@@ -103,9 +103,9 @@ export default [
       description: "Technical Presentations",
       channel: "aidanOdyssey",
       src: [
-        "https://www.youtube.com/embed/gZUH_6LCkm8?si=3t5TdT_27pHiLuFC",
-        "https://www.youtube.com/embed/ZinB2DRHXHg?si=2dpYRMK34Yukf63_",
-        "https://www.youtube.com/embed/8etYVCmutxc?si=i9NOLv4AkUvkNQDg",
+        "https://www.youtube.com/embed/gZUH_6LCkm8",
+        "https://www.youtube.com/embed/ZinB2DRHXHg",
+        "https://www.youtube.com/embed/8etYVCmutxc",
       ],
       steps: {
         titles: [
