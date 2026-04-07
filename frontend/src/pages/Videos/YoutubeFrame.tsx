@@ -24,11 +24,9 @@ function YoutubeFrame({ source, currentStep = 0 } : YoutubeFrameProps) {
                     width: '50vw',
                     height: '65vh',
                 }}
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
-                referrerPolicy="strict-origin-when-cross-origin"
+                sandbox="allow-same-origin allow-scripts allow-popups"
                 ></iframe>
             </Box>
         </>
