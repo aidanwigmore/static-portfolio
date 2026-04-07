@@ -98,6 +98,8 @@ function InstagramGalleries({ home }: InstagramGalleriesProps) {
                       backgroundColor: theme.palette.secondary.light,
                       color: theme.palette.primary.contrastText,
                     },
+                    boxShadow: theme.shadows[3],
+                    marginBottom: '0.4rem',
                   }}
                   key={index}
                   label={`${gallery.title}`}

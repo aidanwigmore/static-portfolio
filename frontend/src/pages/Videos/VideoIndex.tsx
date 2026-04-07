@@ -130,6 +130,8 @@ export default function VideoIndex({  }: VideoIndexProps) {
                   backgroundColor: theme.palette.secondary.light,
                   color: theme.palette.primary.contrastText,
                 },
+                boxShadow: theme.shadows[3],
+                marginBottom: '0.4rem',
               }}
               key={index}
               label={`${item.title}`}
@@ -156,6 +158,7 @@ export default function VideoIndex({  }: VideoIndexProps) {
                   justifyContent: 'center',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  boxShadow: theme.shadows[3],
                 }}
               >
                 <Box

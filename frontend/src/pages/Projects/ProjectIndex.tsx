@@ -82,7 +82,10 @@ export default function ProjectIndex({  }: ProjectIndexProps) {
                 '&:hover': {
                   backgroundColor: theme.palette.secondary.light,
                   color: theme.palette.primary.contrastText,
+                  boxShadow: theme.shadows[3],
                 },
+                boxShadow: theme.shadows[3],
+                marginBottom: '0.4rem',
               }}
               key={index}
               label={`${item.title}`}
@@ -108,6 +111,7 @@ export default function ProjectIndex({  }: ProjectIndexProps) {
                     flexDirection: 'row',
                     alignItems: 'flex-start',
                   },
+                  boxShadow: theme.shadows[3],
                 }}
               >
                 <Box

@@ -35,7 +35,7 @@ function CustomMotionBox({ children, id, sx }: CustomMotionBoxProps) {
         backgroundColor: theme.palette.secondary.main,
         margin: '1rem',
         padding: '1rem',
-        boxShadow: theme.shadows[24],
+        boxShadow: theme.shadows[3],
         ...sx,
       }}
       id={id}

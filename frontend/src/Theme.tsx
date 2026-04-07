@@ -155,7 +155,7 @@ const lightTheme = createTheme({
   widths: {
     card: widths.card,
   },
-  shadows: [...createShadowArray(colors.white)] as any,
+  shadows: [...createShadowArray(colors.black)] as any,
   components: {
     MuiTypography: {
       defaultProps: {

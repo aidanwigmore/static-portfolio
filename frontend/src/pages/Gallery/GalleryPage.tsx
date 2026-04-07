@@ -243,6 +243,7 @@ export default function InstagramGallery({
                   padding: '1rem',
                   margin: '1rem',
                   alignSelf: 'center',
+                  boxShadow: theme.shadows[3],
                 }}
               >
                   {post.name && (
