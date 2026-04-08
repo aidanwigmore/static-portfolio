@@ -6,9 +6,9 @@ export default [
       description: "Youtube Demonstrations",
       channel: "Batched Support",
       src: [
-        "https://www.youtube-nocookie.com/embed/IJFOHNK-sBY",
-        "https://www.youtube-nocookie.com/embed/eX7XDNOrv90",
-        "https://www.youtube-nocookie.com/embed/lQwYJoPhWwQ",
+        "https://www.youtube.com/embed/IJFOHNK-sBY?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/eX7XDNOrv90?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/lQwYJoPhWwQ?rel=0&modestbranding=1",
       ],
       steps: {
         titles: [
@@ -39,9 +39,9 @@ export default [
       description: "TeaBank Demonstrations",
       channel: "aidanOdyssey",
       src: [
-        "https://www.youtube.com/embed/aFiUmvcF3Xw",
-        "https://www.youtube.com/embed/1SbgMCq4-PM",
-        "https://www.youtube.com/embed/fVJ_0QYCSoI",
+        "https://www.youtube.com/embed/aFiUmvcF3Xw?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/1SbgMCq4-PM?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/fVJ_0QYCSoI?rel=0&modestbranding=1",
       ],
       steps: {
         titles: [
@@ -72,9 +72,9 @@ export default [
       description: "PHP Course Demonstrations",
       channel: "aidanOdyssey",
       src: [
-        "https://www.youtube.com/embed/enO66A4MEjA",
-        "https://www.youtube.com/embed/otVmSjKBpyQ",
-        "https://www.youtube.com/embed/XFhhSQ-mEgM",
+        "https://www.youtube.com/embed/enO66A4MEjA?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/otVmSjKBpyQ?rel=0&modestbranding=1",
+        "https://www.youtube.com/embed/XFhhSQ-mEgM?rel=0&modestbranding=1",
       ],
       steps: {
         titles: [

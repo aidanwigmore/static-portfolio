@@ -25,6 +25,7 @@ function YoutubeFrame({ source, currentStep = 0 } : YoutubeFrameProps) {
                     height: '65vh',
                 }}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
                 ></iframe>
             </Box>
